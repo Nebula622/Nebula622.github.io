@@ -1,0 +1,21 @@
+name: python test
+
+on:
+  push:
+    branches: ["master"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      FIB_INPUT: 10
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Install Dependencies
+      run: |
+        ptyhon -m pip install --upgrade pip
+        pip install ruff pytest
+    - name: Test with pytese
+      run: |
+        pytest test.py
